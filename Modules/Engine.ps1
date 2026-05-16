@@ -1,5 +1,7 @@
 #Requires -RunAsAdministrator
 
+$script:BackupDir = "$env:TEMP\WinDevTweak\Backups"
+
 function Import-TweaksConfig {
     $path = Join-Path $PSScriptRoot '..\Config\Tweaks.psd1'
     Import-PowerShellDataFile -Path $path
@@ -17,12 +19,77 @@ function New-SystemRestorePoint {
     }
 }
 
+function Backup-RegistryForTweak {
+    param([hashtable]$Tweak)
+    if (-not (Test-Path $script:BackupDir)) {
+        New-Item -ItemType Directory -Path $script:BackupDir -Force | Out-Null
+    }
+    
+    $uniquePaths = @{}
+    foreach ($cmd in $Tweak.Commands) {
+        if ($cmd -match 'reg(?:\.exe)?\s+add\s+"([^"]+)"') {
+            $path = $matches[1]
+            $fullPath = $path -replace '^HKLM\\', 'HKEY_LOCAL_MACHINE\' -replace '^HKCU\\', 'HKEY_CURRENT_USER\' -replace '^HKCR\\', 'HKEY_CLASSES_ROOT\'
+            $uniquePaths[$fullPath] = $true
+        }
+    }
+    
+    if ($uniquePaths.Count -eq 0) { return $true }
+    
+    $i = 0
+    foreach ($fp in $uniquePaths.Keys) {
+        $backupFile = Join-Path $script:BackupDir "$($Tweak.Id)_$i.reg"
+        try {
+            reg.exe export $fp $backupFile /y 2>$null | Out-Null
+        } catch {
+            # Ignore individual export failures
+        }
+        $i++
+    }
+    return $true
+}
+
+function Undo-LastSession {
+    param([System.Windows.Controls.RichTextBox]$LogBox)
+    if (-not (Test-Path $script:BackupDir)) {
+        Write-Log 'No backups found to undo.' -Level Warning -LogBox $LogBox
+        return $false
+    }
+    $backups = Get-ChildItem $script:BackupDir -Filter '*.reg' | Sort-Object Name -Descending
+    if ($backups.Count -eq 0) {
+        Write-Log 'No backup files found.' -Level Warning -LogBox $LogBox
+        return $false
+    }
+    Write-Log "Undoing $($backups.Count) backup(s)..." -Level Info -LogBox $LogBox
+    foreach ($b in $backups) {
+        try {
+            $output = reg.exe import $b.FullName 2>&1
+            if ($LASTEXITCODE -ne 0) { throw "Exit code $LASTEXITCODE" }
+            Write-Log "Restored: $($b.Name)" -Level Success -LogBox $LogBox
+        } catch {
+            Write-Log "Failed to restore $($b.Name): $_" -Level Error -LogBox $LogBox
+        }
+    }
+    Write-Log 'Undo completed. A restart may be required.' -Level Success -LogBox $LogBox
+    return $true
+}
+
+function Clear-Backups {
+    if (Test-Path $script:BackupDir) {
+        Remove-Item "$script:BackupDir\*.reg" -Force -ErrorAction SilentlyContinue
+    }
+}
+
 function Invoke-Tweak {
     param(
         [hashtable]$Tweak,
-        [System.Windows.Controls.RichTextBox]$LogBox
+        [System.Windows.Controls.RichTextBox]$LogBox,
+        [switch]$NoBackup
     )
     Write-Log "Applying: $($Tweak.Name)" -Level Info -LogBox $LogBox
+    if (-not $NoBackup) {
+        Backup-RegistryForTweak -Tweak $Tweak
+    }
     $success = $true
     foreach ($cmd in $Tweak.Commands) {
         try {

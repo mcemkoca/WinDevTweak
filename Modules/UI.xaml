@@ -1,6 +1,6 @@
 <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="WinDevTweak" Height="750" Width="1150"
+        Title="WinDevTweak v1.1.0" Height="750" Width="1150"
         WindowStartupLocation="CenterScreen"
         Background="#1e1e1e" Foreground="#cccccc"
         FontFamily="Segoe UI" FontSize="13">
@@ -40,10 +40,21 @@
             </StackPanel>
         </Border>
 
-        <!-- Left: Categories -->
-        <Border Grid.Row="1" Background="#1e1e1e" BorderBrush="#3e3e42" BorderThickness="0,0,1,0" Margin="0">
-            <ListBox x:Name="CategoryList" Background="Transparent" BorderThickness="0"/>
-        </Border>
+        <!-- Left: Search + Categories -->
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Background="#252526" BorderBrush="#3e3e42" BorderThickness="0,0,1,1" Padding="10,8">
+                <TextBox x:Name="SearchBox" Background="#1e1e1e" Foreground="#cccccc" BorderBrush="#3e3e42"
+                         CaretBrush="#cccccc" Padding="6,4" FontSize="12"
+                         Text="Search tweaks..."/>
+            </Border>
+            <Border Grid.Row="1" Background="#1e1e1e" BorderBrush="#3e3e42" BorderThickness="0,0,1,0">
+                <ListBox x:Name="CategoryList" Background="Transparent" BorderThickness="0"/>
+            </Border>
+        </Grid>
 
         <!-- Right: Tweak List -->
         <Grid Grid.Row="1" Grid.Column="1" Margin="15">
@@ -52,9 +63,12 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <Button x:Name="BtnSelectAll" Content="☑ Select All"/>
-                <Button x:Name="BtnDeselectAll" Content="☐ Deselect All"/>
-                <Button x:Name="BtnRestorePoint" Content="🔒 Create Restore Point"/>
+                <Button x:Name="BtnSelectAll" Content="Select All"/>
+                <Button x:Name="BtnDeselectAll" Content="Deselect All"/>
+                <Button x:Name="BtnRestorePoint" Content="Create Restore Point"/>
+                <Button x:Name="BtnUndo" Content="Undo Last Session" Background="#ff5555" Foreground="#ffffff"/>
+                <Button x:Name="BtnSaveProfile" Content="Save Profile"/>
+                <Button x:Name="BtnLoadProfile" Content="Load Profile"/>
             </StackPanel>
             <Border Grid.Row="1" BorderBrush="#3e3e42" BorderThickness="1" Background="#252526">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -70,7 +84,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="📋 Execution Log" FontWeight="Bold" Margin="0,0,0,6" Foreground="#cccccc"/>
+            <TextBlock Text="Execution Log" FontWeight="Bold" Margin="0,0,0,6" Foreground="#cccccc"/>
             <Border Grid.Row="1" Background="#0e0e0e" BorderBrush="#3e3e42" BorderThickness="1">
                 <RichTextBox x:Name="LogBox" Background="Transparent" Foreground="#cccccc"
                              FontFamily="Consolas" FontSize="11" IsReadOnly="True"

@@ -15,11 +15,17 @@ $LogBox = $window.FindName('LogBox')
 $BtnSelectAll = $window.FindName('BtnSelectAll')
 $BtnDeselectAll = $window.FindName('BtnDeselectAll')
 $BtnRestorePoint = $window.FindName('BtnRestorePoint')
+$BtnUndo = $window.FindName('BtnUndo')
+$BtnSaveProfile = $window.FindName('BtnSaveProfile')
+$BtnLoadProfile = $window.FindName('BtnLoadProfile')
 $BtnApply = $window.FindName('BtnApply')
 $ProgressBar = $window.FindName('ProgressBar')
+$SelectionLabel = $window.FindName('SelectionLabel')
+$SearchBox = $window.FindName('SearchBox')
 
 $script:Checkboxes = @{}
-$SelectionLabel = $window.FindName('SelectionLabel')
+$script:CurrentFilter = ''
+$script:CurrentCategory = $null
 
 # Tweak sayilarini hesapla
 $tweakCounts = @{}
@@ -36,23 +42,11 @@ function Update-SelectionLabel {
     }
 }
 
-# Kategorileri doldur
-$allItem = New-Object System.Windows.Controls.ListBoxItem
-$allItem.Content = "All Tweaks  ($($config.Tweaks.Count))"
-$allItem.Tag = $null
-$allItem.FontWeight = 'Bold'
-$CategoryList.Items.Add($allItem)
-
-foreach ($cat in $config.Categories) {
-    $item = New-Object System.Windows.Controls.ListBoxItem
-    $count = $tweakCounts[$cat.Id]
-    $item.Content = "$($cat.Name)  ($count)"
-    $item.Tag = $cat.Id
-    $CategoryList.Items.Add($item)
-}
-
 function Show-Tweaks {
-    param([string]$CategoryId)
+    param(
+        [string]$CategoryId,
+        [string]$Filter = ''
+    )
     $TweakPanel.Children.Clear()
     $script:Checkboxes.Clear()
     
@@ -60,6 +54,11 @@ function Show-Tweaks {
         $config.Tweaks | Where-Object { $_.Category -eq $CategoryId }
     } else {
         $config.Tweaks
+    }
+    
+    if ($Filter) {
+        $q = $Filter.ToLower()
+        $filtered = $filtered | Where-Object { $_.Name.ToLower().Contains($q) -or $_.Description.ToLower().Contains($q) }
     }
     
     foreach ($tweak in $filtered) {
@@ -121,12 +120,49 @@ function Show-Tweaks {
     Update-SelectionLabel
 }
 
+# Kategorileri doldur
+$allItem = New-Object System.Windows.Controls.ListBoxItem
+$allItem.Content = "All Tweaks  ($($config.Tweaks.Count))"
+$allItem.Tag = $null
+$allItem.FontWeight = 'Bold'
+$CategoryList.Items.Add($allItem)
+
+foreach ($cat in $config.Categories) {
+    $item = New-Object System.Windows.Controls.ListBoxItem
+    $count = $tweakCounts[$cat.Id]
+    $item.Content = "$($cat.Name)  ($count)"
+    $item.Tag = $cat.Id
+    $CategoryList.Items.Add($item)
+}
+
 # Events
 $CategoryList.Add_SelectionChanged({
     $selected = $CategoryList.SelectedItem
     if ($selected) {
-        Show-Tweaks -CategoryId $selected.Tag
+        $script:CurrentCategory = $selected.Tag
+        Show-Tweaks -CategoryId $selected.Tag -Filter $script:CurrentFilter
     }
+})
+
+$SearchBox.Add_GotFocus({
+    if ($SearchBox.Text -eq 'Search tweaks...') {
+        $SearchBox.Text = ''
+        $SearchBox.Foreground = '#cccccc'
+    }
+})
+
+$SearchBox.Add_LostFocus({
+    if ([string]::IsNullOrWhiteSpace($SearchBox.Text)) {
+        $SearchBox.Text = 'Search tweaks...'
+        $SearchBox.Foreground = '#666666'
+    }
+})
+
+$SearchBox.Add_TextChanged({
+    $query = $SearchBox.Text.Trim()
+    if ($query -eq 'Search tweaks...') { $query = '' }
+    $script:CurrentFilter = $query
+    Show-Tweaks -CategoryId $script:CurrentCategory -Filter $query
 })
 
 $BtnSelectAll.Add_Click({ 
@@ -141,6 +177,55 @@ $BtnRestorePoint.Add_Click({
     $BtnRestorePoint.IsEnabled = $false
     New-SystemRestorePoint
     $BtnRestorePoint.IsEnabled = $true
+})
+
+$BtnUndo.Add_Click({
+    $result = [System.Windows.MessageBox]::Show(
+        'This will restore registry backups from the last Apply session. Continue?',
+        'WinDevTweak - Undo',
+        'YesNo',
+        'Warning'
+    )
+    if ($result -eq 'Yes') {
+        $BtnUndo.IsEnabled = $false
+        Undo-LastSession -LogBox $LogBox
+        $BtnUndo.IsEnabled = $true
+    }
+})
+
+$BtnSaveProfile.Add_Click({
+    $selectedIds = $script:Checkboxes.GetEnumerator() | Where-Object { $_.Value.IsChecked -eq $true } | ForEach-Object { $_.Key }
+    if (-not $selectedIds) {
+        Write-Log 'No tweaks selected to save.' -Level Warning -LogBox $LogBox
+        return
+    }
+    $profile = @{
+        Version = '1.1.0'
+        Created = (Get-Date -Format 'o')
+        Tweaks = @($selectedIds)
+    }
+    $savePath = Join-Path $env:USERPROFILE 'Documents\WinDevTweak_Profile.json'
+    $profile | ConvertTo-Json -Depth 3 | Out-File -Encoding utf8 $savePath
+    Write-Log "Profile saved to: $savePath" -Level Success -LogBox $LogBox
+})
+
+$BtnLoadProfile.Add_Click({
+    $openFile = New-Object Microsoft.Win32.OpenFileDialog
+    $openFile.Filter = 'JSON files (*.json)|*.json|All files (*.*)|*.*'
+    $openFile.InitialDirectory = Join-Path $env:USERPROFILE 'Documents'
+    if ($openFile.ShowDialog() -eq $true) {
+        try {
+            $profile = Get-Content $openFile.FileName | ConvertFrom-Json
+            foreach ($id in $profile.Tweaks) {
+                if ($script:Checkboxes.ContainsKey($id)) {
+                    $script:Checkboxes[$id].IsChecked = $true
+                }
+            }
+            Write-Log "Profile loaded: $($openFile.FileName)" -Level Success -LogBox $LogBox
+        } catch {
+            Write-Log "Failed to load profile: $_" -Level Error -LogBox $LogBox
+        }
+    }
 })
 
 $BtnApply.Add_Click({
@@ -162,9 +247,12 @@ $BtnApply.Add_Click({
         New-SystemRestorePoint
     }
     
+    Clear-Backups
+    
     $BtnApply.IsEnabled = $false
     $BtnSelectAll.IsEnabled = $false
     $BtnDeselectAll.IsEnabled = $false
+    $BtnUndo.IsEnabled = $false
     $ProgressBar.Visibility = 'Visible'
     $ProgressBar.Maximum = $selected.Count
     $ProgressBar.Value = 0
@@ -187,12 +275,14 @@ $BtnApply.Add_Click({
     $BtnApply.IsEnabled = $true
     $BtnSelectAll.IsEnabled = $true
     $BtnDeselectAll.IsEnabled = $true
+    $BtnUndo.IsEnabled = $true
     $ProgressBar.Visibility = 'Collapsed'
 })
 
 # Init
 Show-Tweaks -CategoryId $null
 $CategoryList.SelectedIndex = 0
-Write-Log 'WinDevTweak loaded. Select tweaks and click Apply.' -Level Info -LogBox $LogBox
+$SearchBox.Foreground = '#666666'
+Write-Log 'WinDevTweak v1.1.0 loaded. Select tweaks and click Apply.' -Level Info -LogBox $LogBox
 
 [void]$window.ShowDialog()
