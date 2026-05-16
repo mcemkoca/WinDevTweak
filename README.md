@@ -21,7 +21,7 @@ WinDevTweak is a modern **PowerShell WPF GUI** application for optimizing Window
 
 | Feature | Description |
 |---------|-------------|
-| **Modern WPF GUI** | Dark theme with green accent, clean category-based layout |
+| **Modern WPF GUI** | GitHub-inspired dark theme (#0d1117), card-based layout, custom title bar, hover effects |
 | **420+ Tweaks** | Performance, privacy, security, network, storage, explorer, services, dev-tools |
 | **Selective Apply** | Checkbox-driven selection -- apply one, a few, or an entire category |
 | **Risk Indicators** | Every tweak is tagged Low / Medium / High risk |
