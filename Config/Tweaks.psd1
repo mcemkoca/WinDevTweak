@@ -1,27 +1,27 @@
-@{
+﻿@{
     Categories = @(
-        @{ Id = 'perf'; Name = 'SYSTEM PERFORMANCE ^& RESPONSIVENESS' }
-        @{ Id = 'privacy'; Name = 'TELEMETRY ^& PRIVACY' }
+        @{ Id = 'perf'; Name = 'SYSTEM PERFORMANCE & RESPONSIVENESS' }
+        @{ Id = 'privacy'; Name = 'TELEMETRY & PRIVACY' }
         @{ Id = 'update'; Name = 'WINDOWS UPDATE OPTIMIZATION' }
-        @{ Id = 'security'; Name = 'SECURITY ^& DEFENDER TWEAKS' }
+        @{ Id = 'security'; Name = 'SECURITY & DEFENDER TWEAKS' }
         @{ Id = 'network'; Name = 'NETWORK OPTIMIZATION' }
-        @{ Id = 'storage'; Name = 'STORAGE ^& FILE SYSTEM' }
-        @{ Id = 'explorer'; Name = 'EXPLORER ^& UI TWEAKS' }
+        @{ Id = 'storage'; Name = 'STORAGE & FILE SYSTEM' }
+        @{ Id = 'explorer'; Name = 'EXPLORER & UI TWEAKS' }
         @{ Id = 'services'; Name = 'SERVICES OPTIMIZATION' }
-        @{ Id = 'context'; Name = 'CONTEXT MENU ^& FILE ASSOCIATIONS' }
+        @{ Id = 'context'; Name = 'CONTEXT MENU & FILE ASSOCIATIONS' }
         @{ Id = 'devtools'; Name = 'BONUS DEVELOPER-SPECIFIC TWEAKS' }
-        @{ Id = 'cleanup'; Name = 'CLEANUP ^& MAINTENANCE COMMANDS (331-350)' }
+        @{ Id = 'cleanup'; Name = 'CLEANUP & MAINTENANCE COMMANDS (331-350)' }
         @{ Id = 'registry'; Name = 'ADVANCED REGISTRY TWEAKS (351-380)' }
-        @{ Id = 'features'; Name = 'DEVELOPER TOOLS ^& ENVIRONMENT (381-400)' }
+        @{ Id = 'features'; Name = 'DEVELOPER TOOLS & ENVIRONMENT (381-400)' }
         @{ Id = 'final'; Name = 'FINAL OPTIMIZATIONS (401-420)' }
     )
 
     Tweaks = @(
         @{
             Id = 'perf-001'
-            Name = 'Enabling Ultimate Performance Power Plan...'
+            Name = 'Enabling Ultimate Performance Power Plan'
             Category = 'perf'
-            Description = 'Enabling Ultimate Performance Power Plan...'
+            Description = 'Enabling Ultimate Performance Power Plan'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -32,9 +32,9 @@
         }
         @{
             Id = 'perf-002'
-            Name = 'Disabling Hibernation...'
+            Name = 'Disabling Hibernation'
             Category = 'perf'
-            Description = 'Disabling Hibernation...'
+            Description = 'Disabling Hibernation'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -43,9 +43,9 @@
         }
         @{
             Id = 'perf-003'
-            Name = 'Disabling Fast Startup...'
+            Name = 'Disabling Fast Startup'
             Category = 'perf'
-            Description = 'Disabling Fast Startup...'
+            Description = 'Disabling Fast Startup'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -54,9 +54,9 @@
         }
         @{
             Id = 'perf-004'
-            Name = 'Setting Processor Scheduling to Programs...'
+            Name = 'Setting Processor Scheduling to Programs'
             Category = 'perf'
-            Description = 'Setting Processor Scheduling to Programs...'
+            Description = 'Setting Processor Scheduling to Programs'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -65,9 +65,9 @@
         }
         @{
             Id = 'perf-005'
-            Name = 'Disabling UI Animations...'
+            Name = 'Disabling UI Animations'
             Category = 'perf'
-            Description = 'Disabling UI Animations...'
+            Description = 'Disabling UI Animations'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -77,9 +77,9 @@
         }
         @{
             Id = 'perf-006'
-            Name = 'Disabling Transparency Effects...'
+            Name = 'Disabling Transparency Effects'
             Category = 'perf'
-            Description = 'Disabling Transparency Effects...'
+            Description = 'Disabling Transparency Effects'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -88,9 +88,9 @@
         }
         @{
             Id = 'perf-007'
-            Name = 'Disabling Live Tiles...'
+            Name = 'Disabling Live Tiles'
             Category = 'perf'
-            Description = 'Disabling Live Tiles...'
+            Description = 'Disabling Live Tiles'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -99,9 +99,9 @@
         }
         @{
             Id = 'perf-008'
-            Name = 'Optimizing Menu Show Delay...'
+            Name = 'Optimizing Menu Show Delay'
             Category = 'perf'
-            Description = 'Optimizing Menu Show Delay...'
+            Description = 'Optimizing Menu Show Delay'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -110,9 +110,9 @@
         }
         @{
             Id = 'perf-009'
-            Name = 'Disabling Mouse Acceleration...'
+            Name = 'Disabling Mouse Acceleration'
             Category = 'perf'
-            Description = 'Disabling Mouse Acceleration...'
+            Description = 'Disabling Mouse Acceleration'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -123,25 +123,25 @@
         }
         @{
             Id = 'perf-010'
-            Name = 'Setting Visual Effects to Best Performance...'
+            Name = 'Setting Visual Effects to Best Performance'
             Category = 'perf'
-            Description = 'Setting Visual Effects to Best Performance...'
+            Description = 'Setting Visual Effects to Best Performance'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
                 'reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" /v "VisualFXSetting" /t REG_DWORD /d "2" /f'
                 'echo.'
                 'echo ============================================'
-                'echo  SECTION 2: TELEMETRY ^& PRIVACY'
+                'echo  SECTION 2: TELEMETRY & PRIVACY'
                 'echo ============================================'
                 'echo.'
             )
         }
         @{
             Id = 'privacy-001'
-            Name = 'Disabling Windows Telemetry...'
+            Name = 'Disabling Windows Telemetry'
             Category = 'privacy'
-            Description = 'Disabling Windows Telemetry...'
+            Description = 'Disabling Windows Telemetry'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -152,9 +152,9 @@
         }
         @{
             Id = 'privacy-002'
-            Name = 'Disabling Connected User Experiences...'
+            Name = 'Disabling Connected User Experiences'
             Category = 'privacy'
-            Description = 'Disabling Connected User Experiences...'
+            Description = 'Disabling Connected User Experiences'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -165,9 +165,9 @@
         }
         @{
             Id = 'privacy-003'
-            Name = 'Disabling Advertising ID...'
+            Name = 'Disabling Advertising ID'
             Category = 'privacy'
-            Description = 'Disabling Advertising ID...'
+            Description = 'Disabling Advertising ID'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -177,9 +177,9 @@
         }
         @{
             Id = 'privacy-004'
-            Name = 'Disabling Cortana...'
+            Name = 'Disabling Cortana'
             Category = 'privacy'
-            Description = 'Disabling Cortana...'
+            Description = 'Disabling Cortana'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -190,9 +190,9 @@
         }
         @{
             Id = 'privacy-005'
-            Name = 'Disabling Windows Feedback...'
+            Name = 'Disabling Windows Feedback'
             Category = 'privacy'
-            Description = 'Disabling Windows Feedback...'
+            Description = 'Disabling Windows Feedback'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -203,9 +203,9 @@
         }
         @{
             Id = 'privacy-006'
-            Name = 'Disabling Location Tracking...'
+            Name = 'Disabling Location Tracking'
             Category = 'privacy'
-            Description = 'Disabling Location Tracking...'
+            Description = 'Disabling Location Tracking'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -215,9 +215,9 @@
         }
         @{
             Id = 'privacy-007'
-            Name = 'Disabling Online Speech Recognition...'
+            Name = 'Disabling Online Speech Recognition'
             Category = 'privacy'
-            Description = 'Disabling Online Speech Recognition...'
+            Description = 'Disabling Online Speech Recognition'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -227,9 +227,9 @@
         }
         @{
             Id = 'privacy-008'
-            Name = 'Disabling Ink / Typing Data Collection...'
+            Name = 'Disabling Ink / Typing Data Collection'
             Category = 'privacy'
-            Description = 'Disabling Ink / Typing Data Collection...'
+            Description = 'Disabling Ink / Typing Data Collection'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -239,9 +239,9 @@
         }
         @{
             Id = 'privacy-009'
-            Name = 'Disabling App Launch Tracking...'
+            Name = 'Disabling App Launch Tracking'
             Category = 'privacy'
-            Description = 'Disabling App Launch Tracking...'
+            Description = 'Disabling App Launch Tracking'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -251,9 +251,9 @@
         }
         @{
             Id = 'privacy-010'
-            Name = 'Disabling Suggested Content in Settings...'
+            Name = 'Disabling Suggested Content in Settings'
             Category = 'privacy'
-            Description = 'Disabling Suggested Content in Settings...'
+            Description = 'Disabling Suggested Content in Settings'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -269,9 +269,9 @@
         }
         @{
             Id = 'update-001'
-            Name = 'Setting Windows Update to Notify Only...'
+            Name = 'Setting Windows Update to Notify Only'
             Category = 'update'
-            Description = 'Setting Windows Update to Notify Only...'
+            Description = 'Setting Windows Update to Notify Only'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -283,9 +283,9 @@
         }
         @{
             Id = 'update-002'
-            Name = 'Disabling Auto-Reboot after Updates...'
+            Name = 'Disabling Auto-Reboot after Updates'
             Category = 'update'
-            Description = 'Disabling Auto-Reboot after Updates...'
+            Description = 'Disabling Auto-Reboot after Updates'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -296,9 +296,9 @@
         }
         @{
             Id = 'update-003'
-            Name = 'Disabling Driver Updates via Windows Update...'
+            Name = 'Disabling Driver Updates via Windows Update'
             Category = 'update'
-            Description = 'Disabling Driver Updates via Windows Update...'
+            Description = 'Disabling Driver Updates via Windows Update'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -308,9 +308,9 @@
         }
         @{
             Id = 'update-004'
-            Name = 'Disabling Preview Builds...'
+            Name = 'Disabling Preview Builds'
             Category = 'update'
-            Description = 'Disabling Preview Builds...'
+            Description = 'Disabling Preview Builds'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -320,9 +320,9 @@
         }
         @{
             Id = 'update-005'
-            Name = 'Disabling Update Orchestrator Auto-Reboot...'
+            Name = 'Disabling Update Orchestrator Auto-Reboot'
             Category = 'update'
-            Description = 'Disabling Update Orchestrator Auto-Reboot...'
+            Description = 'Disabling Update Orchestrator Auto-Reboot'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -331,9 +331,9 @@
         }
         @{
             Id = 'update-006'
-            Name = 'Setting Active Hours (09:00 - 23:00)...'
+            Name = 'Setting Active Hours (09:00 - 23:00)'
             Category = 'update'
-            Description = 'Setting Active Hours (09:00 - 23:00)...'
+            Description = 'Setting Active Hours (09:00 - 23:00)'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -342,16 +342,16 @@
                 'reg add "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v "SmartActiveHoursState" /t REG_DWORD /d "0" /f'
                 'echo.'
                 'echo ============================================'
-                'echo  SECTION 4: SECURITY ^& DEFENDER TWEAKS'
+                'echo  SECTION 4: SECURITY & DEFENDER TWEAKS'
                 'echo ============================================'
                 'echo.'
             )
         }
         @{
             Id = 'security-001'
-            Name = 'Adjusting Windows Defender Settings...'
+            Name = 'Adjusting Windows Defender Settings'
             Category = 'security'
-            Description = 'Adjusting Windows Defender Settings...'
+            Description = 'Adjusting Windows Defender Settings'
             RiskLevel = 'Medium'
             RequiresRestart = $false
             Commands = @(
@@ -361,9 +361,9 @@
         }
         @{
             Id = 'security-002'
-            Name = 'Disabling Automatic Sample Submission...'
+            Name = 'Disabling Automatic Sample Submission'
             Category = 'security'
-            Description = 'Disabling Automatic Sample Submission...'
+            Description = 'Disabling Automatic Sample Submission'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -373,9 +373,9 @@
         }
         @{
             Id = 'security-003'
-            Name = 'Disabling SmartScreen...'
+            Name = 'Disabling SmartScreen'
             Category = 'security'
-            Description = 'Disabling SmartScreen...'
+            Description = 'Disabling SmartScreen'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -385,9 +385,9 @@
         }
         @{
             Id = 'security-004'
-            Name = 'Adjusting Exploit Protection...'
+            Name = 'Adjusting Exploit Protection'
             Category = 'security'
-            Description = 'Adjusting Exploit Protection...'
+            Description = 'Adjusting Exploit Protection'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -396,9 +396,9 @@
         }
         @{
             Id = 'security-005'
-            Name = 'Lowering UAC to minimum (for dev automation)...'
+            Name = 'Lowering UAC to minimum (for dev automation)'
             Category = 'security'
-            Description = 'Lowering UAC to minimum (for dev automation)...'
+            Description = 'Lowering UAC to minimum (for dev automation)'
             RiskLevel = 'High'
             RequiresRestart = $false
             Commands = @(
@@ -408,9 +408,9 @@
         }
         @{
             Id = 'security-006'
-            Name = 'Enabling Developer Mode...'
+            Name = 'Enabling Developer Mode'
             Category = 'security'
-            Description = 'Enabling Developer Mode...'
+            Description = 'Enabling Developer Mode'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -425,9 +425,9 @@
         }
         @{
             Id = 'network-001'
-            Name = 'Disabling Nagle''s Algorithm for lower latency...'
+            Name = 'Disabling Nagle''s Algorithm for lower latency'
             Category = 'network'
-            Description = 'Disabling Nagle''s Algorithm for lower latency...'
+            Description = 'Disabling Nagle''s Algorithm for lower latency'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -436,9 +436,9 @@
         }
         @{
             Id = 'network-002'
-            Name = 'Optimizing TCP/IP Settings...'
+            Name = 'Optimizing TCP/IP Settings'
             Category = 'network'
-            Description = 'Optimizing TCP/IP Settings...'
+            Description = 'Optimizing TCP/IP Settings'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -450,9 +450,9 @@
         }
         @{
             Id = 'network-003'
-            Name = 'Disabling IPv6 (reduces network overhead)...'
+            Name = 'Disabling IPv6 (reduces network overhead)'
             Category = 'network'
-            Description = 'Disabling IPv6 (reduces network overhead)...'
+            Description = 'Disabling IPv6 (reduces network overhead)'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -461,9 +461,9 @@
         }
         @{
             Id = 'network-004'
-            Name = 'Disabling Network Discovery...'
+            Name = 'Disabling Network Discovery'
             Category = 'network'
-            Description = 'Disabling Network Discovery...'
+            Description = 'Disabling Network Discovery'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -474,9 +474,9 @@
         }
         @{
             Id = 'network-005'
-            Name = 'Optimizing DNS Cache...'
+            Name = 'Optimizing DNS Cache'
             Category = 'network'
-            Description = 'Optimizing DNS Cache...'
+            Description = 'Optimizing DNS Cache'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -488,9 +488,9 @@
         }
         @{
             Id = 'network-006'
-            Name = 'Disabling Wi-Fi Sense...'
+            Name = 'Disabling Wi-Fi Sense'
             Category = 'network'
-            Description = 'Disabling Wi-Fi Sense...'
+            Description = 'Disabling Wi-Fi Sense'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -498,16 +498,16 @@
                 'reg add "HKLM\SOFTWARE\Microsoft\PolicyManager\default\WiFi\AllowAutoConnectToWiFiSenseHotspots" /v "value" /t REG_DWORD /d "0" /f'
                 'echo.'
                 'echo ============================================'
-                'echo  SECTION 6: STORAGE ^& FILE SYSTEM'
+                'echo  SECTION 6: STORAGE & FILE SYSTEM'
                 'echo ============================================'
                 'echo.'
             )
         }
         @{
             Id = 'storage-001'
-            Name = 'Disabling Windows Search Indexing...'
+            Name = 'Disabling Windows Search Indexing'
             Category = 'storage'
-            Description = 'Disabling Windows Search Indexing...'
+            Description = 'Disabling Windows Search Indexing'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -518,9 +518,9 @@
         }
         @{
             Id = 'storage-002'
-            Name = 'Disabling SysMain (Superfetch)...'
+            Name = 'Disabling SysMain (Superfetch)'
             Category = 'storage'
-            Description = 'Disabling SysMain (Superfetch)...'
+            Description = 'Disabling SysMain (Superfetch)'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -530,9 +530,9 @@
         }
         @{
             Id = 'storage-003'
-            Name = 'Disabling Prefetch...'
+            Name = 'Disabling Prefetch'
             Category = 'storage'
-            Description = 'Disabling Prefetch...'
+            Description = 'Disabling Prefetch'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -542,9 +542,9 @@
         }
         @{
             Id = 'storage-004'
-            Name = 'Enabling Large System Cache...'
+            Name = 'Enabling Large System Cache'
             Category = 'storage'
-            Description = 'Enabling Large System Cache...'
+            Description = 'Enabling Large System Cache'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -553,9 +553,9 @@
         }
         @{
             Id = 'storage-005'
-            Name = 'Disabling Last Access Time Stamp...'
+            Name = 'Disabling Last Access Time Stamp'
             Category = 'storage'
-            Description = 'Disabling Last Access Time Stamp...'
+            Description = 'Disabling Last Access Time Stamp'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -564,25 +564,25 @@
         }
         @{
             Id = 'storage-006'
-            Name = 'Disabling 8.3 Name Creation...'
+            Name = 'Disabling 8.3 Name Creation'
             Category = 'storage'
-            Description = 'Disabling 8.3 Name Creation...'
+            Description = 'Disabling 8.3 Name Creation'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
                 'fsutil behavior set disable8dot3 1'
                 'echo.'
                 'echo ============================================'
-                'echo  SECTION 7: EXPLORER ^& UI TWEAKS'
+                'echo  SECTION 7: EXPLORER & UI TWEAKS'
                 'echo ============================================'
                 'echo.'
             )
         }
         @{
             Id = 'explorer-001'
-            Name = 'Enabling File Extensions and Hidden Files...'
+            Name = 'Enabling File Extensions and Hidden Files'
             Category = 'explorer'
-            Description = 'Enabling File Extensions and Hidden Files...'
+            Description = 'Enabling File Extensions and Hidden Files'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -593,9 +593,9 @@
         }
         @{
             Id = 'explorer-002'
-            Name = 'Setting Explorer to open This PC...'
+            Name = 'Setting Explorer to open This PC'
             Category = 'explorer'
-            Description = 'Setting Explorer to open This PC...'
+            Description = 'Setting Explorer to open This PC'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -604,9 +604,9 @@
         }
         @{
             Id = 'explorer-003'
-            Name = 'Disabling Recent Files in Quick Access...'
+            Name = 'Disabling Recent Files in Quick Access'
             Category = 'explorer'
-            Description = 'Disabling Recent Files in Quick Access...'
+            Description = 'Disabling Recent Files in Quick Access'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -616,9 +616,9 @@
         }
         @{
             Id = 'explorer-004'
-            Name = 'Disabling Navigation Pane Auto-Expand...'
+            Name = 'Disabling Navigation Pane Auto-Expand'
             Category = 'explorer'
-            Description = 'Disabling Navigation Pane Auto-Expand...'
+            Description = 'Disabling Navigation Pane Auto-Expand'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -627,9 +627,9 @@
         }
         @{
             Id = 'explorer-005'
-            Name = 'Showing Full Path in Explorer Title Bar...'
+            Name = 'Showing Full Path in Explorer Title Bar'
             Category = 'explorer'
-            Description = 'Showing Full Path in Explorer Title Bar...'
+            Description = 'Showing Full Path in Explorer Title Bar'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -638,9 +638,9 @@
         }
         @{
             Id = 'explorer-006'
-            Name = 'Disabling Sticky/Filter Keys Popups...'
+            Name = 'Disabling Sticky/Filter Keys Popups'
             Category = 'explorer'
-            Description = 'Disabling Sticky/Filter Keys Popups...'
+            Description = 'Disabling Sticky/Filter Keys Popups'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -656,9 +656,9 @@
         }
         @{
             Id = 'services-001'
-            Name = 'Disabling unnecessary services...'
+            Name = 'Disabling unnecessary services'
             Category = 'services'
-            Description = 'Disabling unnecessary services...'
+            Description = 'Disabling unnecessary services'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -676,9 +676,9 @@
         }
         @{
             Id = 'services-002'
-            Name = 'Disabling more unnecessary services...'
+            Name = 'Disabling more unnecessary services'
             Category = 'services'
-            Description = 'Disabling more unnecessary services...'
+            Description = 'Disabling more unnecessary services'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -696,9 +696,9 @@
         }
         @{
             Id = 'services-003'
-            Name = 'Setting services to Manual...'
+            Name = 'Setting services to Manual'
             Category = 'services'
-            Description = 'Setting services to Manual...'
+            Description = 'Setting services to Manual'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -714,16 +714,16 @@
                 'sc config Dhcp start= auto'
                 'echo.'
                 'echo ============================================'
-                'echo  SECTION 9: CONTEXT MENU ^& FILE ASSOCIATIONS'
+                'echo  SECTION 9: CONTEXT MENU & FILE ASSOCIATIONS'
                 'echo ============================================'
                 'echo.'
             )
         }
         @{
             Id = 'context-001'
-            Name = 'Adding Open with Notepad to context menu...'
+            Name = 'Adding Open with Notepad to context menu'
             Category = 'context'
-            Description = 'Adding Open with Notepad to context menu...'
+            Description = 'Adding Open with Notepad to context menu'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -733,9 +733,9 @@
         }
         @{
             Id = 'context-002'
-            Name = 'Adding Open CMD Here (Admin) to context menu...'
+            Name = 'Adding Open CMD Here (Admin) to context menu'
             Category = 'context'
-            Description = 'Adding Open CMD Here (Admin) to context menu...'
+            Description = 'Adding Open CMD Here (Admin) to context menu'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -746,9 +746,9 @@
         }
         @{
             Id = 'context-003'
-            Name = 'Adding Copy Path to context menu...'
+            Name = 'Adding Copy Path to context menu'
             Category = 'context'
-            Description = 'Adding Copy Path to context menu...'
+            Description = 'Adding Copy Path to context menu'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -760,9 +760,9 @@
         }
         @{
             Id = 'context-004'
-            Name = 'Adding Take Ownership to context menu...'
+            Name = 'Adding Take Ownership to context menu'
             Category = 'context'
-            Description = 'Adding Take Ownership to context menu...'
+            Description = 'Adding Take Ownership to context menu'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -780,9 +780,9 @@
         }
         @{
             Id = 'devtools-001'
-            Name = 'Enabling Long Path Support...'
+            Name = 'Enabling Long Path Support'
             Category = 'devtools'
-            Description = 'Enabling Long Path Support...'
+            Description = 'Enabling Long Path Support'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -791,9 +791,9 @@
         }
         @{
             Id = 'devtools-002'
-            Name = 'Disabling Windows Error Reporting...'
+            Name = 'Disabling Windows Error Reporting'
             Category = 'devtools'
-            Description = 'Disabling Windows Error Reporting...'
+            Description = 'Disabling Windows Error Reporting'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -803,9 +803,9 @@
         }
         @{
             Id = 'devtools-003'
-            Name = 'Disabling Remote Assistance...'
+            Name = 'Disabling Remote Assistance'
             Category = 'devtools'
-            Description = 'Disabling Remote Assistance...'
+            Description = 'Disabling Remote Assistance'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -815,9 +815,9 @@
         }
         @{
             Id = 'devtools-004'
-            Name = 'Disabling AutoPlay...'
+            Name = 'Disabling AutoPlay'
             Category = 'devtools'
-            Description = 'Disabling AutoPlay...'
+            Description = 'Disabling AutoPlay'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -827,9 +827,9 @@
         }
         @{
             Id = 'devtools-005'
-            Name = 'Disabling Lock Screen...'
+            Name = 'Disabling Lock Screen'
             Category = 'devtools'
-            Description = 'Disabling Lock Screen...'
+            Description = 'Disabling Lock Screen'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -838,25 +838,25 @@
         }
         @{
             Id = 'devtools-006'
-            Name = 'Disabling Shake to Minimize...'
+            Name = 'Disabling Shake to Minimize'
             Category = 'devtools'
-            Description = 'Disabling Shake to Minimize...'
+            Description = 'Disabling Shake to Minimize'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
                 'reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "DisallowShaking" /t REG_DWORD /d "1" /f'
                 'echo.'
                 'echo ============================================'
-                'echo  SECTION 11: CLEANUP ^& MAINTENANCE'
+                'echo  SECTION 11: CLEANUP & MAINTENANCE'
                 'echo ============================================'
                 'echo.'
             )
         }
         @{
             Id = 'cleanup-001'
-            Name = 'Cleaning Temporary Files...'
+            Name = 'Cleaning Temporary Files'
             Category = 'cleanup'
-            Description = 'Cleaning Temporary Files...'
+            Description = 'Cleaning Temporary Files'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -866,9 +866,9 @@
         }
         @{
             Id = 'cleanup-002'
-            Name = 'Flushing DNS Cache...'
+            Name = 'Flushing DNS Cache'
             Category = 'cleanup'
-            Description = 'Flushing DNS Cache...'
+            Description = 'Flushing DNS Cache'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -877,9 +877,9 @@
         }
         @{
             Id = 'cleanup-003'
-            Name = 'Resetting Windows Store Cache...'
+            Name = 'Resetting Windows Store Cache'
             Category = 'cleanup'
-            Description = 'Resetting Windows Store Cache...'
+            Description = 'Resetting Windows Store Cache'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -888,9 +888,9 @@
         }
         @{
             Id = 'cleanup-004'
-            Name = 'Running Disk Cleanup...'
+            Name = 'Running Disk Cleanup'
             Category = 'cleanup'
-            Description = 'Running Disk Cleanup...'
+            Description = 'Running Disk Cleanup'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -904,9 +904,9 @@
         }
         @{
             Id = 'registry-001'
-            Name = 'Disabling Thumbnail Cache...'
+            Name = 'Disabling Thumbnail Cache'
             Category = 'registry'
-            Description = 'Disabling Thumbnail Cache...'
+            Description = 'Disabling Thumbnail Cache'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -915,9 +915,9 @@
         }
         @{
             Id = 'registry-002'
-            Name = 'Disabling Wallpaper Compression...'
+            Name = 'Disabling Wallpaper Compression'
             Category = 'registry'
-            Description = 'Disabling Wallpaper Compression...'
+            Description = 'Disabling Wallpaper Compression'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -926,9 +926,9 @@
         }
         @{
             Id = 'registry-003'
-            Name = 'Increasing Menu Cache Size...'
+            Name = 'Increasing Menu Cache Size'
             Category = 'registry'
-            Description = 'Increasing Menu Cache Size...'
+            Description = 'Increasing Menu Cache Size'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -937,9 +937,9 @@
         }
         @{
             Id = 'registry-004'
-            Name = 'Disabling Snap Assist...'
+            Name = 'Disabling Snap Assist'
             Category = 'registry'
-            Description = 'Disabling Snap Assist...'
+            Description = 'Disabling Snap Assist'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -948,9 +948,9 @@
         }
         @{
             Id = 'registry-005'
-            Name = 'Disabling Timeline...'
+            Name = 'Disabling Timeline'
             Category = 'registry'
-            Description = 'Disabling Timeline...'
+            Description = 'Disabling Timeline'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -959,25 +959,25 @@
         }
         @{
             Id = 'registry-006'
-            Name = 'Disabling Focus Assist...'
+            Name = 'Disabling Focus Assist'
             Category = 'registry'
-            Description = 'Disabling Focus Assist...'
+            Description = 'Disabling Focus Assist'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
                 'reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings" /v "NOC_GLOBAL_SETTING_ALLOW_NOTIFICATION_SOUND" /t REG_DWORD /d "0" /f'
                 'echo.'
                 'echo ============================================'
-                'echo  SECTION 13: DEVELOPER TOOLS ^& ENVIRONMENT'
+                'echo  SECTION 13: DEVELOPER TOOLS & ENVIRONMENT'
                 'echo ============================================'
                 'echo.'
             )
         }
         @{
             Id = 'features-001'
-            Name = 'Enabling WSL...'
+            Name = 'Enabling WSL'
             Category = 'features'
-            Description = 'Enabling WSL...'
+            Description = 'Enabling WSL'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -987,9 +987,9 @@
         }
         @{
             Id = 'features-002'
-            Name = 'Enabling Hyper-V...'
+            Name = 'Enabling Hyper-V'
             Category = 'features'
-            Description = 'Enabling Hyper-V...'
+            Description = 'Enabling Hyper-V'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -998,9 +998,9 @@
         }
         @{
             Id = 'features-003'
-            Name = 'Enabling Containers...'
+            Name = 'Enabling Containers'
             Category = 'features'
-            Description = 'Enabling Containers...'
+            Description = 'Enabling Containers'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -1009,9 +1009,9 @@
         }
         @{
             Id = 'features-004'
-            Name = 'Enabling Windows Sandbox...'
+            Name = 'Enabling Windows Sandbox'
             Category = 'features'
-            Description = 'Enabling Windows Sandbox...'
+            Description = 'Enabling Windows Sandbox'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -1025,9 +1025,9 @@
         }
         @{
             Id = 'final-001'
-            Name = 'Final Superfetch disable...'
+            Name = 'Final Superfetch disable'
             Category = 'final'
-            Description = 'Final Superfetch disable...'
+            Description = 'Final Superfetch disable'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -1036,9 +1036,9 @@
         }
         @{
             Id = 'final-002'
-            Name = 'Optimizing Paging File...'
+            Name = 'Optimizing Paging File'
             Category = 'final'
-            Description = 'Optimizing Paging File...'
+            Description = 'Optimizing Paging File'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -1047,9 +1047,9 @@
         }
         @{
             Id = 'final-003'
-            Name = 'Disabling Memory Compression...'
+            Name = 'Disabling Memory Compression'
             Category = 'final'
-            Description = 'Disabling Memory Compression...'
+            Description = 'Disabling Memory Compression'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -1058,9 +1058,9 @@
         }
         @{
             Id = 'final-004'
-            Name = 'Restarting Explorer...'
+            Name = 'Restarting Explorer'
             Category = 'final'
-            Description = 'Restarting Explorer...'
+            Description = 'Restarting Explorer'
             RiskLevel = 'Low'
             RequiresRestart = $false
             Commands = @(
@@ -1074,8 +1074,9 @@
                 'echo.'
                 'echo   rstrui.exe'
                 'echo.'
-                'echo Press any key to exit...'
+                'echo Press any key to exit'
             )
         }
     )
 }
+

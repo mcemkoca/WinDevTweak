@@ -19,17 +19,34 @@ $BtnApply = $window.FindName('BtnApply')
 $ProgressBar = $window.FindName('ProgressBar')
 
 $script:Checkboxes = @{}
+$SelectionLabel = $window.FindName('SelectionLabel')
+
+# Tweak sayilarini hesapla
+$tweakCounts = @{}
+foreach ($t in $config.Tweaks) {
+    if (-not $tweakCounts.ContainsKey($t.Category)) { $tweakCounts[$t.Category] = 0 }
+    $tweakCounts[$t.Category]++
+}
+
+function Update-SelectionLabel {
+    $selected = $script:Checkboxes.Values | Where-Object { $_.IsChecked -eq $true }
+    $count = if ($selected) { $selected.Count } else { 0 }
+    if ($SelectionLabel) {
+        $SelectionLabel.Text = "$count selected"
+    }
+}
 
 # Kategorileri doldur
 $allItem = New-Object System.Windows.Controls.ListBoxItem
-$allItem.Content = "All Tweaks"
+$allItem.Content = "All Tweaks  ($($config.Tweaks.Count))"
 $allItem.Tag = $null
 $allItem.FontWeight = 'Bold'
 $CategoryList.Items.Add($allItem)
 
 foreach ($cat in $config.Categories) {
     $item = New-Object System.Windows.Controls.ListBoxItem
-    $item.Content = $cat.Name
+    $count = $tweakCounts[$cat.Id]
+    $item.Content = "$($cat.Name)  ($count)"
     $item.Tag = $cat.Id
     $CategoryList.Items.Add($item)
 }
@@ -61,6 +78,8 @@ function Show-Tweaks {
         $cb.Margin = '0,2,12,0'
         $cb.VerticalAlignment = 'Center'
         $cb.Tag = $tweak
+        $cb.Add_Checked({ Update-SelectionLabel })
+        $cb.Add_Unchecked({ Update-SelectionLabel })
         [void]$grid.Children.Add($cb)
         [System.Windows.Controls.Grid]::SetColumn($cb, 0)
         
@@ -99,6 +118,7 @@ function Show-Tweaks {
         $TweakPanel.Children.Add($border)
         $script:Checkboxes[$tweak.Id] = $cb
     }
+    Update-SelectionLabel
 }
 
 # Events
@@ -156,7 +176,10 @@ $BtnApply.Add_Click({
         $tweak = $cb.Tag
         Write-Log "[$current/$total] $($tweak.Name)" -Level Info -LogBox $LogBox
         $ok = Invoke-Tweak -Tweak $tweak -LogBox $LogBox
-        if ($ok) { $cb.Foreground = '#00ff88' }
+        if ($ok) { 
+            $cb.Foreground = '#00ff88'
+            $cb.IsEnabled = $false
+        }
         $ProgressBar.Value = $current
     }
     
