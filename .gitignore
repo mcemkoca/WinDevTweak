@@ -1,0 +1,16 @@
+# PowerShell
+*.ps1xml
+*.psc1
+*.pssc
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Temp
+*.tmp
+*.log
